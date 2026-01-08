@@ -1,7 +1,7 @@
-
+import random
 
 class Room():
-    def __init__(self, roomID, type, xCoord, yCoord, conPoint, conID):
+    def __init__(self, roomID):
         ## xCoord, yCoord, top=None, bottom=None, left=None, right=None):
         self.top = None
         self.bottom = None
@@ -12,15 +12,41 @@ class Room():
         self.dlu = None
         self.dld = None
         self.roomID = roomID
-        self.type = type
-        self.xCoord = xCoord
-        self.yCoord = yCoord
-        self.conPoint = conPoint
-        self.conID = conID
+        #self.type = type
+        self.xCoord = None
+        self.yCoord = None
+        self.conPoint = None
+        self.conID = None
+
+        if self.roomID == 0:
+            self.type = "start"
+        else:
+            self.type = self.genType()
 
 
-    def genType():
-        pass
+    def genType(self):
+        rNumber = random.randint(1,9)
+        match rNumber:
+            case 1:
+                return "encounter"
+            case 2:
+                return "miniboss"
+            case 3:
+                return "boss"
+            case 4: 
+                return "shop"
+            case 5:
+                return "loot"
+            case 6:
+                return "rest"
+            case 7:
+                return "puzzle"
+            case 8:
+                return "dmChoice"
+            case 9:
+                return "gathering"
+            case _:
+                return "dmChoice"
 
     def genConnections():
         pass
