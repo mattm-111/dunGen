@@ -1,4 +1,5 @@
 import random
+import secrets
 
 class Room():
     def __init__(self, roomID):
@@ -22,15 +23,17 @@ class Room():
         
 
 
-    def genType(self, max):
+    def genType(self, maxDepth):
         if self.roomID == 0:
             return "start"
-        elif self.roomID == max -1:
+        elif self.roomID == maxDepth -1:
             return "boss"
         else:
         
-            rNumber = random.randint(1,8)
+            rNumber = secrets.randbelow(8)
             match rNumber:
+                case 0:
+                    return "dmChoice"
                 case 1:
                     return "encounter"
                 case 2:
@@ -45,8 +48,6 @@ class Room():
                     return "rest"
                 case 7:
                     return "puzzle"
-                case 8:
-                    return "dmChoice"
                 case _:
                     return "dmChoice"
             
@@ -75,17 +76,30 @@ class Room():
                 return "dmChoice"
 
     
-    def treeGen(numberOfRooms, maxDepth):
-        pass
+    def distrobutionGen(self, numberOfRooms, maxDepth):
+        ternarySect = (maxDepth - 2) // 3
+        firstTernary = ternarySect + 1
+        secondTernary = firstTernary + ternarySect
+        thirdTernary = secondTernary + ternarySect
+        strayRooms = (numberOfRooms - maxDepth) - (int(.25 * (numberOfRooms - maxDepth)) + int(.25 * (numberOfRooms - maxDepth)) + int(.5 * (numberOfRooms - maxDepth)))
 
-    def setCoords(self, max):
+        print (f"""\napprox split = {ternarySect} low pop at 25% each, high pop 50%, \n
+               first low pop ternary = {1} - > {firstTernary - 1}..... 25% of (total rooms - max depth) is {int(.25 * (numberOfRooms - maxDepth))}\n
+               second ternary high pop = {firstTernary} -> {secondTernary}....50% of total rooms - max depth is {int(.5 * (numberOfRooms - maxDepth))}\n
+               final ternary low pop = {secondTernary + 1} - > {maxDepth - 2}..... 25% of (total rooms - max depth) is {int(.25 * (numberOfRooms - maxDepth))}\n
+                stray rooms = {strayRooms}\n
+                """)
+
+
+
+    def setCoords(self, maxDepth):
         if self.roomID == 0:
             self.xCoord = 0
             self.yCoord = 0
-        elif self.roomID == int(max) - 1:
-            self.xCoord = int(max) - 1
+        elif self.roomID == int(maxDepth) - 1:
+            self.xCoord = int(maxDepth) - 1
             self.yCoord = 0
-        elif self.roomID < max:
+        elif self.roomID < maxDepth:
             self.xCoord = self.roomID
             self.yCoord = 0
         else:

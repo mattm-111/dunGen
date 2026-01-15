@@ -14,6 +14,7 @@ def main():
         
     for key, value in myMap.nodeDict.items():
         print(f"{key} -> {value}")
+    myMap.nodeDict[0].distrobutionGen(numberOfRooms, maxDepth)
     
 
         
