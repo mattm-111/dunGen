@@ -23,10 +23,10 @@ class Room():
         
 
 
-    def genType(self, maxDepth):
+    def genType(self, numberOfRooms):
         if self.roomID == 0:
             return "start"
-        elif self.roomID == maxDepth -1:
+        elif self.roomID == numberOfRooms - 1:
             return "boss"
         else:
         
@@ -76,35 +76,48 @@ class Room():
                 return "dmChoice"
 
     
-    def distrobutionGen(self, numberOfRooms, maxDepth):
-        ternarySect = (maxDepth - 2) // 3
-        firstTernary = ternarySect + 1
-        secondTernary = firstTernary + ternarySect
-        thirdTernary = secondTernary + ternarySect
-        strayRooms = (numberOfRooms - maxDepth) - (int(.25 * (numberOfRooms - maxDepth)) + int(.25 * (numberOfRooms - maxDepth)) + int(.5 * (numberOfRooms - maxDepth)))
+    # def distrobutionGen(self, numberOfRooms, maxDepth):
+    #     ternarySect = (maxDepth - 2) // 3
+    #     firstTernary = ternarySect + 1
+    #     secondTernary = firstTernary + ternarySect
+    #     thirdTernary = secondTernary + ternarySect
+    #     fillSect = numberOfRooms - maxDepth
+    #     lowPop = int(.25 * fillSect)
+    #     highPop = int(.5 * fillSect)
+    #     strayRooms = fillSect - (2 * lowPop + highPop)
 
-        print (f"""\napprox split = {ternarySect} low pop at 25% each, high pop 50%, \n
-               first low pop ternary = {1} - > {firstTernary - 1}..... 25% of (total rooms - max depth) is {int(.25 * (numberOfRooms - maxDepth))}\n
-               second ternary high pop = {firstTernary} -> {secondTernary}....50% of total rooms - max depth is {int(.5 * (numberOfRooms - maxDepth))}\n
-               final ternary low pop = {secondTernary + 1} - > {maxDepth - 2}..... 25% of (total rooms - max depth) is {int(.25 * (numberOfRooms - maxDepth))}\n
-                stray rooms = {strayRooms}\n
-                """)
+    #     print (f"""\napprox split = {ternarySect} low pop at 25% each, high pop 50%, \n
+    #            first low pop ternary = {1} - > {firstTernary - 1}..... 25% of (total rooms - max depth) is {lowPop}\n
+    #            second ternary high pop = {firstTernary} -> {secondTernary}....50% of total rooms - max depth is {highPop}\n
+    #            final ternary low pop = {secondTernary + 1} - > {maxDepth - 2}..... 25% of (total rooms - max depth) is {lowPop}\n
+    #             stray rooms = {strayRooms}\n
+    #             """)
+    #     distroDict = {"tern1Start": 1,
+    #                   "tern1End": firstTernary - 1,
+    #                   "tern2Start": firstTernary,
+    #                   "tern2End": secondTernary,
+    #                   "tern3Start": secondTernary + 1,
+    #                   "tern3End": maxDepth -2,
+    #                   "lowPop": lowPop,
+    #                   "highPop": highPop,
+    #                   "strayRooms": strayRooms}
+    #     return distroDict
 
 
 
-    def setCoords(self, maxDepth):
-        if self.roomID == 0:
-            self.xCoord = 0
-            self.yCoord = 0
-        elif self.roomID == int(maxDepth) - 1:
-            self.xCoord = int(maxDepth) - 1
-            self.yCoord = 0
-        elif self.roomID < maxDepth:
-            self.xCoord = self.roomID
-            self.yCoord = 0
-        else:
-            self.xCoord = 99
-            self.yCoord = 99
+    # def setCoords(self, maxDepth):
+    #     if self.roomID == 0:
+    #         self.xCoord = 0
+    #         self.yCoord = 0
+    #     elif self.roomID == int(maxDepth) - 1:
+    #         self.xCoord = int(maxDepth) - 1
+    #         self.yCoord = 0
+    #     elif self.roomID < maxDepth:
+    #         self.xCoord = self.roomID
+    #         self.yCoord = 0
+    #     else:
+    #         self.xCoord = 99
+    #         self.yCoord = 99
 
 
     def __str__(self):
