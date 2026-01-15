@@ -12,21 +12,47 @@ class Room():
         self.dlu = None
         self.dld = None
         self.roomID = roomID
-        #self.type = type
+        self.type = type
         self.xCoord = None
         self.yCoord = None
         self.conPoint = None
         self.conID = None
 
+
+        
+
+
+    def genType(self, max):
         if self.roomID == 0:
-            self.type = "start"
+            return "start"
+        elif self.roomID == max -1:
+            return "boss"
         else:
-            self.type = self.genType()
+        
+            rNumber = random.randint(1,8)
+            match rNumber:
+                case 1:
+                    return "encounter"
+                case 2:
+                    return "miniboss"
+                case 3:
+                    return "gathering"
+                case 4: 
+                    return "shop"
+                case 5:
+                    return "loot"
+                case 6:
+                    return "rest"
+                case 7:
+                    return "puzzle"
+                case 8:
+                    return "dmChoice"
+                case _:
+                    return "dmChoice"
+            
 
-
-    def genType(self):
-        rNumber = random.randint(1,9)
-        match rNumber:
+    def setType(self, number):
+        match number:
             case 1:
                 return "encounter"
             case 2:
@@ -48,11 +74,27 @@ class Room():
             case _:
                 return "dmChoice"
 
-    def genConnections():
+    
+    def treeGen(numberOfRooms, maxDepth):
         pass
 
+    def setCoords(self, max):
+        if self.roomID == 0:
+            self.xCoord = 0
+            self.yCoord = 0
+        elif self.roomID == int(max) - 1:
+            self.xCoord = int(max) - 1
+            self.yCoord = 0
+        elif self.roomID < max:
+            self.xCoord = self.roomID
+            self.yCoord = 0
+        else:
+            self.xCoord = 99
+            self.yCoord = 99
+
+
     def __str__(self):
-        return f"Room {self.roomID}, type = {self.type}"
+        return f"Room {self.roomID}, type = {self.type}, xCoord = {self.xCoord}, yCoord = {self.yCoord}"
     
 
 

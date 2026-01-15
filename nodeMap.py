@@ -7,5 +7,7 @@ class NodeMap():
 
 
     def addNode(self, node):
+        
         self.nodeDict[node.roomID] = node
+
 
