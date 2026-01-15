@@ -1,10 +1,14 @@
 from roomNode import Room
 import random
+import matplotlib
+
+
 
 class NodeMap():
     def __init__(self):
         
         self.nodeList = []
+        
     
 
 
@@ -55,7 +59,7 @@ class NodeMap():
             elif node.roomID == (numberOfRooms - 1):
                 node.xCoord = (maxDepth - 1)
                 node.yCoord = 0
-                usedCoords.append([0,maxDepth - 1])
+                usedCoords.append([node.xCoord, node.yCoord])
 
             else:
                 if node.roomID <= self.lowPop:
@@ -88,7 +92,35 @@ class NodeMap():
                             node.yCoord = tempY
                             usedCoords.append([tempX, tempY])
                             break
+        for i in range(0, numberOfRooms):
+            usedCoords[i].append(i)
+        print (usedCoords)
+        self.roomCoordList = usedCoords
 
+
+
+    def graphNodes(self):
+        matplotlib.use('TkAgg')
+        
+        x_coords = [row[0] for row in self.roomCoordList]
+        y_coords = [row[1] for row in self.roomCoordList]
+        node_ids = [row[2] for row in self.roomCoordList]
+        matplotlib.pyplot.scatter(x_coords, y_coords, color='red')
+        for i, label in enumerate(node_ids):
+            matplotlib.pyplot.annotate(
+                label,                      # The text to display
+                (x_coords[i], y_coords[i]), # The point (x, y) to label
+                textcoords="offset points", # How to position the text
+                xytext=(0, 10),             # Distance from text to point (x, y)
+                ha='center'                 # Horizontal alignment
+            )
+
+        matplotlib.pyplot.xlabel('X Coord')
+        matplotlib.pyplot.ylabel('Y Coord')
+        matplotlib.pyplot.title('Dungeon Map')
+        #matplotlib.pyplot.grid(True)
+        #pyp.savefig('labeled_nodes.png')
+        matplotlib.pyplot.show()
 
 
 

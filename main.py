@@ -1,5 +1,6 @@
 from roomNode import Room
 from nodeMap import NodeMap
+import matplotlib.pyplot
 
 from functions import *
 
@@ -24,6 +25,11 @@ def main():
 
     for node in myMap.nodeList:
         print (node)    
+
+    #print (myMap.roomCoordList)
+    myMap.graphNodes()
+
+    
 
         
 
