@@ -94,6 +94,7 @@ class NodeMap():
                             break
         for i in range(0, numberOfRooms):
             usedCoords[i].append(i)
+        
         print (usedCoords)
         self.roomCoordList = usedCoords
 
